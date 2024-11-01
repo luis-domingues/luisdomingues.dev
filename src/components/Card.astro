@@ -1,0 +1,20 @@
+---
+import { ReactTyped } from 'react-typed';
+---
+<div class="flex flex-col w-full items-start border border-zinc-100 rounded-sm shadow-lg px-8 my-4 py-2">
+    <p class="font-semibold text-sm md:text-xl text-zinc-700">Luís Domingues</p>
+    <p class="font-bold text-xl md:text-2xl text-zinc-900">Backend Developer</p>
+    <ReactTyped 
+        className="space-y-2 font-medium text-blue-600"
+        strings={[
+            'Software Engineering',
+            'ASP.NET',
+            'Java',
+            'Spring Boot',
+            'CSharp'
+        ]}
+        typeSpeed={90}
+        loop
+        client:visible
+    />
+</div>
