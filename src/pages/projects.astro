@@ -4,30 +4,21 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Tags from "../components/Tags.astro";
 ---
-<Layout title="Projetos | Luís Domingues">
+<Layout title="projetos | Luís Domingues">
     <main class="flex flex-col w-4/5 my-16 space-y-8">
         <h1 class="font-bold text-zinc-900 mx-4 text-xl md:text-2xl">Projetos</h1>
-        <section>
+        <section class="space-y-4">
           <h2 class="flex mx-8 font-bold">
-            <a href="" target="_blank" class="">nome projeto |<span class="font-light"> breve descrição</span></a>
+            <a href="https://github.com/luis-domingues/SocialNet" target="_blank" class="">SocialNET |<span class="font-light"> Uma rede social minimalista inspirado no Twitter. <em>(link do projeto)</em></span></a>
           </h2>
-          <p class="mx-8">sinopse do projeto</p>
+          <p class="mx-8 leading-5">Desenvolvido em .NET e Entity Framework Core, durante a suspensão do X (Twitter) no Brasil, o SocialNET é uma evolução de uma RESTful API na qual criei anteriormente, com foco na criação de uma experiência de interação moderna e intuitiva. O projeto <span class="border-b border-zinc-500">permite que usuários publiquem conteúdos, interajam com posts e sigam outros perfis</span>.</p>
+          <p class="mx-8"></p>
           <Tags
             tags={[
-              'ex1',
-              'ex2'
-            ]}
-          />
-        </section>
-        <section>
-          <h2 class="flex mx-8 font-bold">
-            <a href="" target="_blank" class="">nome projeto |<span class="font-light"> breve descrição</span></a>
-          </h2>
-          <p class="mx-8">sinopse do projeto</p>
-          <Tags
-            tags={[
-              'ex1',
-              'ex2'
+              'ASP.NET',
+              'EF',
+              'SQL Server',
+              'Fullstack'
             ]}
           />
         </section>
