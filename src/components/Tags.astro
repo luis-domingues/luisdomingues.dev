@@ -8,7 +8,7 @@ const { tags } = Astro.props;
 <ul class="flex flex-wrap gap-2 text-sm lg:text-base mx-8">
     {
         tags.map((tag) => {
-            return <li class="border-b border-zinc-900 p-1">{ tag }</li>
+            return <li class="border rounded-md border-zinc-900 p-1 text-sm max-sm:text-xs">{ tag }</li>
         })
     }
 </ul>
