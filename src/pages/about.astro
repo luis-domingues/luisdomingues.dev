@@ -1,20 +1,35 @@
 ---
+import Image from "astro/components/Image.astro";
 import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
 ---
 <Layout title="sobre mim | Luís Domingues">
-    <main class="flex flex-col w-4/5 my-16 space-y-8">
+    <main class="flex flex-col w-4/5 my-16 space-y-4">
         <h1 class="font-bold text-zinc-900 text-xl sm:text-2xl">Sobre mim</h1>
         <p>
             <span class="font-semibold">Yoo!</span> Me chamo Luís Domingues, sou desenvolvedor de software com foco em desenvolvimento backend. Minha jornada em programação começou quando eu tinha 14 anos, com tópicos de cibersegurança, o que me levou a ter interesse sobre diversas áreas no mundo da programação e engenharias correlacionadas.
         </p>
         <p>
-            <span class="border-b border-zinc-700">Principais skills em backend são</span>,Java com Spring Boot, .NET (C# e ASP.NET), TypeScript, Lua, SQL Server, My SQL e MongoDB, e hospedagem com Azure.
+            Principais skills em <span class="border-b border-zinc-700">backend</span> são:
         </p>
+        <Image 
+
+            width="350"
+            height="350"
+            src="https://skillicons.dev/icons?i=dotnet,cs,java,spring,mysql,mongodb"
+            alt=".NET, Csharp, Java, Sprign Framework, My SQL, MongoDB"
+            loading="eager"
+        />
         <p>
-            <span class="border-b border-zinc-700">Ferramentas de frontend que uso</span>: React, Blazor, TailwindCSS e Astro Framework.
+            Ferramentas de <span class="border-b border-zinc-700">frontend</span> 
         </p>
+        <Image 
+
+            width="350"
+            height="350"
+            src="https://skillicons.dev/icons?i=css,tailwind,bootstrap,react,angular,astro"
+            alt=""
+            loading="eager"
+        />
         <p>
             Fique à vontade para olhar meus projetos, ler alguns artigos que escrevi e entrar em contato comigo (:
         </p>
