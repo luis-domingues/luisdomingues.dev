@@ -1,6 +1,15 @@
-<div class="grid grid-flow-row md:grid-cols-2 lg:grid-cols-3 max-sm:gap-3 gap-4">
-	<div class="border">meu perfil</div>
-	<div class="border lg:col-span-2">sobre mim</div>
+---
+import Developer from "./Developer.astro";
+import About from "./About.astro";
+---
+
+<div
+	class="grid grid-flow-row md:grid-cols-2 lg:grid-cols-3 max-sm:gap-3 gap-4"
+>
+	<div class="border border-slate-900 rounded-lg">
+		<Developer />
+	</div>
+	<div class="border lg:col-span-2"><About /></div>
 	<div class="border md:row-span-2">minhas stacks</div>
 	<div class="border">experiência</div>
 	<div class="border">projetos</div>
