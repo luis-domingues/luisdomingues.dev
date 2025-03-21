@@ -5,10 +5,17 @@
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Luís Domingues</title>
-	</head>
-	<body
-		class="flex justify-center flex-col m-2 border font-nunito bg-primary text-primary"
+	</head><body
+		class="flex h-screen w-screen items-center justify-center font-mono"
 	>
-		<slot />
+		<main
+			class="border flex w-3/5"
+		>
+			<div
+				class="flex flex-col max-sm:p-4 max-md:p-8 max-lg:p-10 p-12"
+			>
+				<slot />
+			</div>
+		</main>
 	</body>
 </html>
