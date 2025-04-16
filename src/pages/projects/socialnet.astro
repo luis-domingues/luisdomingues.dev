@@ -1,0 +1,106 @@
+---
+title: "SocialNET - Detalhes Técnicos";
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout>
+    <h1 class="text-3xl font-bold mb-4">SocialNET</h1>
+
+    <p class="text-gray-700 leading-relaxed mb-6">
+        Durante a instabilidade nacional no Twitter/X. Em meio a
+        postagens fora do ar e timelines desatualizadas, uma pergunta surgiu: <em
+            >seria possível recriar uma rede social funcional, segura e
+            escalável semelhante as já existentes?</em
+        >
+        <br /><br />
+        Foi assim que nasceu o SocialNET — um experimento pessoal que possuie essencialmente as mesmas funcionalidades do X.
+    </p>
+
+    <h2 class="text-2xl font-semibold mt-8 mb-2">Ideia inicial</h2>
+
+    <p class="text-gray-700 leading-relaxed mb-6">
+        Pensei no algoritmo de similaridade de Jaccard para recomendar usuários.
+        Se dois usuários têm interesses semelhantes, ou interagem com conteúdos
+        parecidos, talvez haja valor em conectá-los. <br /><br />
+        Esse tipo de lógica me fez refletir sobre todo o design da aplicação: <strong
+            >cada decisão técnica precisava maximizar conexões reais</strong
+        >, seja via feed personalizado, sistema de seguidores ou interações
+        entre postagens.
+    </p>
+
+    <h2 class="text-2xl font-semibold mt-8 mb-2">Mindset e Roadmap</h2>
+
+    <ul class="list-disc pl-5 space-y-2 text-gray-800">
+        <li>
+            <strong>Validação rápida:</strong> Comecei com o básico (registro, login,
+            feed) e fui evoluindo o projeto em sprints de melhorias.
+        </li>
+        <li>
+            <strong>Backend sólido:</strong> API RESTful em ASP.NET + EF Core com
+            separação clara entre camadas.
+        </li>
+        <li>
+            <strong>Frontend leve e responsivo:</strong> Utilizando Bootstrap e CSS puro, ainda sim pensando na performance e responsividade.
+        </li>
+    </ul>
+
+    <h2 class="text-2xl font-semibold mt-8 mb-2">Stack utilizada</h2>
+
+    <table class="w-full text-left text-gray-700 mb-6">
+        <tbody>
+            <tr>
+                <td class="font-medium">Frontend</td>
+                <td>Bootstrap e CSS</td>
+            </tr>
+            <tr>
+                <td class="font-medium">Backend</td>
+                <td>ASP.NET Core</td>
+            </tr>
+            <tr>
+                <td class="font-medium">Banco de dados</td>
+                <td>SQL Server</td>
+            </tr>
+            <tr>
+                <td class="font-medium">Autenticação</td>
+                <td>JWT + Refresh Token</td>
+            </tr>
+            <tr>
+                <td class="font-medium">Notificações</td>
+                <td>WebSockets</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2 class="text-2xl font-semibold mt-8 mb-2">
+        Funcionalidades em destaque
+    </h2>
+
+    <ul class="list-disc pl-5 space-y-2 text-gray-800">
+        <li>Autenticação segura com recuperação de senha</li>
+        <li>Publicação de posts, threads e comentários</li>
+        <li>Feed pessoal com base em quem você segue</li>
+        <li>Interações (likes, comentários, remoções)</li>
+        <li>Notificações em tempo real</li>
+        <li>Visualização de perfis alheios com dados dinâmicos</li>
+    </ul>
+
+    <h2 class="text-2xl font-semibold mt-8 mb-2">
+        Similaridade e Recomendação
+    </h2>
+
+    <p class="text-gray-700 leading-relaxed mb-6">
+        O sistema de recomendação é inspirado em modelos de similaridade, como
+        Jaccard e Cosine. Ainda em protótipo, ele calcula interseções entre
+        interesses, hashtags e perfis visualizados, sugerindo usuários com
+        afinidade comportamental.
+    </p>
+
+    <h2 class="text-2xl font-semibold mt-8 mb-2">Aprendizados</h2>
+
+    <p class="text-gray-700">
+        Trabalhar no SocialNET me permitiu aplicar conceitos de MVC, otimizar consultas no EF Core e entender mais a fundo o
+        funcionamento de redes sociais modernas. Sendo um projeto grande que demorei 3 meses para concluir, sendo um grande laboratório de ideias e estudos.
+    </p>
+    <br>
+    <a class="mt-6 sm:p-2 border border-black bg-black text-white hover:bg-transparent hover:text-black" href="https://github.com/luis-domingues/SocialNet" target="_blank">Link para o projeto</a>
+</Layout>
