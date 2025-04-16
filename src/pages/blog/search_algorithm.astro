@@ -1,0 +1,128 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout>
+    <article
+        class="max-w-3xl mx-auto p-4 sm:p-6 space-y-6 text-gray-800 leading-relaxed"
+    >
+        <h2 class="text-2xl sm:text-3xl font-bold">Algoritmo de busca</h2>
+
+        <p>
+            Algumas semanas atrás, eu estava testando o chatbot da nossa plataforma e reparei em um detalhe curioso: mesmo quando a pergunta era parecida com um problema já cadastrado, o resultado retornado era… diferente do esperado.
+            Inicialmente, os resultados de buscas retornavam soluções
+            priorizando os problemas e as tags. Mas ainda assim, era uma busca
+            que poderia conter falhas. Afinal, os logs indicavam que a
+            correspondência de palavras-chave foi reconhecida corretamente, e a
+            pontuação estava sendo calculada com os pesos ajustados. Os valores
+            pareciam coerentes, não havendo necessidade de ajustes. Posteriormente, notei que algumas buscas não retornavam resultados desejados, exigindo maior refinamento.
+        </p>
+
+        <p class="italic text-gray-600">"E como você pensou nisso?"</p>
+
+        <p>
+            O chatbot utiliza a função <code class="bg-gray-100 px-1 rounded"
+                >CalculateSimilarity</code
+            >, que normaliza os textos (remove acentos, stopwords etc.),
+            tokeniza a query e os problemas do banco de dados, e compara os
+            tokens, calculando a similaridade baseada na proporção de palavras
+            coincidentes.
+        </p>
+
+        <p>
+            <strong>Mas existe um problema:</strong> o método não considera a importância
+            das palavras na base. Algumas palavras podem ter mais peso que outras,
+            e nossa aplicação estava tratando todas igualmente.
+        </p>
+
+        <h3 class="text-lg font-semibold">O que melhorar?</h3>
+        <p>Cheguei a três melhorias principais no cálculo:</p>
+
+        <ol class="list-decimal pl-5 space-y-2">
+            <li>
+                <strong>Maior peso para tags e categorias:</strong> se uma palavra
+                da query estiver presente nesses campos, ela valerá mais pontos.
+            </li>
+            <li>
+                <strong>Filtro por frequência:</strong> palavras muito comuns (como
+                “o”, “de”, “com”) não devem ter tanto peso.
+            </li>
+            <li>
+                <strong>Similaridade mínima:</strong> resultados com uma pontuação
+                muito baixa (ex: 10%) devem ser descartados.
+            </li>
+        </ol>
+
+        <p class="italic text-gray-600">
+            "Ok, mas como você aplicou isso no código?"
+        </p>
+
+        <p>
+            Atualizei a função <code class="bg-gray-100 px-1 rounded"
+                >CalculateSimilarity</code
+            > com a seguinte lógica:
+        </p>
+
+        <pre
+            class="bg-gray-100 text-sm p-4 rounded overflow-x-auto">
+            <code>
+            foreach (var token in inputTokens)
+            &#123;
+                if (problemTokens.Contains(token))
+                &#123;
+                    matches++;
+                &#125;
+                if (tagTokens.Contains(token))
+                &#123;
+                    tagMatches++;
+                &#125;
+            &#125;
+            
+            double score = ((matches * 1.0) + (tagMatches * 1.5)) / inputTokens.Count;
+            </code>
+            </pre>
+
+        <p>
+            Esse código faz com que as palavras que aparecem nas tags ganhem um
+            peso 1.5x maior que as do problema principal, e a similaridade agora
+            reflete melhor os tópicos principais.
+        </p>
+
+        <p>
+            Também criei uma <strong>lista de stopwords</strong> para ignorar palavras
+            irrelevantes, e apliquei um limite mínimo de similaridade. Assim, garantimos
+            que só resultados realmente relevantes sejam exibidos.
+        </p>
+
+        <h3 class="text-lg font-semibold">E quanto à performance?</h3>
+        <p>
+            Mesmo com a busca refinada, percebi que ainda dava para melhorar o
+            tempo de resposta. A solução: <strong>cache com Redis</strong>.
+        </p>
+
+        <p>Sem cache, o fluxo era assim:</p>
+        <ol class="list-decimal pl-5 space-y-1">
+            <li>Usuário envia pergunta ao chatbot.</li>
+            <li>A API consulta o banco de dados.</li>
+            <li>SQL Server processa e retorna os dados.</li>
+            <li>API responde ao usuário.</li>
+        </ol>
+
+        <p>
+            Esse processo, com muitos acessos simultâneos, poderia sobrecarregar
+            o banco. A solução foi usar o Redis para armazenar as respostas
+            frequentes e evitar consultas desnecessárias.
+        </p>
+
+        <p>
+            Agora, a API verifica primeiro no Redis. Se a resposta estiver no
+            cache, ela é retornada imediatamente. Caso contrário, busca no
+            banco, salva no Redis e responde.
+        </p>
+
+        <p class="font-medium">
+            O resultado? Menos chamadas ao banco, respostas em milissegundos e
+            maior escalabilidade sem comprometer o desempenho.
+        </p>
+    </article>
+</Layout>
