@@ -1,16 +1,11 @@
-<footer class="py-6 px-4 mt-auto">
-    <div class="max-w-4xl mx-auto">
-        <div class="flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-4">
-            <span class="text-sm text-gray-600">© 2025, Luís Domingues</span>
-            <div class="flex gap-2 sm:gap-4">
-                <a href="https://github.com/luis-domingues" class="text-sm hover:underline underline-offset-4 transition-colors duration-200">
-                    GitHub
-                </a>
-                <span class="text-gray-400">|</span>
-                <a href="https://linkedin.com/in/luis-domingues-developer" class="text-sm hover:underline underline-offset-4 transition-colors duration-200">
-                    LinkedIn
-                </a>
-            </div>
-        </div>
-    </div>
+<!-- Footer.astro -->
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="p-6 text-center text-sm text-gray-500 border-t border-gray-300 bg-white">
+	<div class="max-w-4xl mx-auto">
+		<p>&copy; {currentYear} Luís Domingues <span class="px-2">|</span> Made with <span class="text-gray-400">&lt;/&gt;</span></p>
+		<p class="mt-2 text-xs font-light tracking-wide">VERSION 3.1.0</p>
+	</div>
 </footer>
