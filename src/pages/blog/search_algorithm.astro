@@ -1,128 +1,193 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import Layout from "../../layouts/Layout.astro"
 ---
 
 <Layout>
-    <article
-        class="max-w-3xl mx-auto p-4 sm:p-6 space-y-6 text-gray-800 leading-relaxed"
-    >
-        <h2 class="text-2xl sm:text-3xl font-bold">Algoritmo de busca</h2>
-
-        <p>
-            Algumas semanas atrás, eu estava testando o chatbot da nossa plataforma e reparei em um detalhe curioso: mesmo quando a pergunta era parecida com um problema já cadastrado, o resultado retornado era… diferente do esperado.
-            Inicialmente, os resultados de buscas retornavam soluções
-            priorizando os problemas e as tags. Mas ainda assim, era uma busca
-            que poderia conter falhas. Afinal, os logs indicavam que a
-            correspondência de palavras-chave foi reconhecida corretamente, e a
-            pontuação estava sendo calculada com os pesos ajustados. Os valores
-            pareciam coerentes, não havendo necessidade de ajustes. Posteriormente, notei que algumas buscas não retornavam resultados desejados, exigindo maior refinamento.
-        </p>
-
-        <p class="italic text-gray-600">"E como você pensou nisso?"</p>
-
-        <p>
-            O chatbot utiliza a função <code class="bg-gray-100 px-1 rounded"
-                >CalculateSimilarity</code
-            >, que normaliza os textos (remove acentos, stopwords etc.),
-            tokeniza a query e os problemas do banco de dados, e compara os
-            tokens, calculando a similaridade baseada na proporção de palavras
-            coincidentes.
-        </p>
-
-        <p>
-            <strong>Mas existe um problema:</strong> o método não considera a importância
-            das palavras na base. Algumas palavras podem ter mais peso que outras,
-            e nossa aplicação estava tratando todas igualmente.
-        </p>
-
-        <h3 class="text-lg font-semibold">O que melhorar?</h3>
-        <p>Cheguei a três melhorias principais no cálculo:</p>
-
-        <ol class="list-decimal pl-5 space-y-2">
-            <li>
-                <strong>Maior peso para tags e categorias:</strong> se uma palavra
-                da query estiver presente nesses campos, ela valerá mais pontos.
-            </li>
-            <li>
-                <strong>Filtro por frequência:</strong> palavras muito comuns (como
-                “o”, “de”, “com”) não devem ter tanto peso.
-            </li>
-            <li>
-                <strong>Similaridade mínima:</strong> resultados com uma pontuação
-                muito baixa (ex: 10%) devem ser descartados.
-            </li>
-        </ol>
-
-        <p class="italic text-gray-600">
-            "Ok, mas como você aplicou isso no código?"
-        </p>
-
-        <p>
-            Atualizei a função <code class="bg-gray-100 px-1 rounded"
-                >CalculateSimilarity</code
-            > com a seguinte lógica:
-        </p>
-
-        <pre
-            class="bg-gray-100 text-sm p-4 rounded overflow-x-auto">
-            <code>
-            foreach (var token in inputTokens)
-            &#123;
-                if (problemTokens.Contains(token))
-                &#123;
-                    matches++;
-                &#125;
-                if (tagTokens.Contains(token))
-                &#123;
-                    tagMatches++;
-                &#125;
-            &#125;
+    <div class="max-w-3xl mx-auto space-y-8">
+        <a href="/blog" class="inline-block mb-6 text-gray-500 hover:text-gray-900 transition-colors">
+            <span class="flex items-center">
+                <span class="text-lg font-light mr-1">&larr;</span>
+                <span class="text-sm font-mono">VOLTAR_PARA_BLOG</span>
+            </span>
+        </a>
+        
+        <div class="y2k-window">
+            <div class="bg-gray-200 px-3 py-1 border-b border-gray-400 flex items-center">
+                <div class="mr-2 flex">
+                    <div class="w-3 h-3 rounded-full bg-gray-400 mr-1"></div>
+                    <div class="w-3 h-3 rounded-full bg-gray-400 mr-1"></div>
+                    <div class="w-3 h-3 rounded-full bg-gray-400"></div>
+                </div>
+                <div class="text-xs text-center flex-1 font-bold tracking-wider">SEARCH_ALGORITHM.txt</div>
+            </div>
             
-            double score = ((matches * 1.0) + (tagMatches * 1.5)) / inputTokens.Count;
-            </code>
-            </pre>
+            <div class="p-8 max-sm:p-4 bg-white">
+                <article class="space-y-6 text-gray-800 leading-relaxed">
+                    <header class="mb-8 pb-4 border-b border-gray-200">
+                        <h1 class="text-2xl sm:text-3xl font-bold mb-3 tracking-tight">Algoritmo de busca</h1>
+                        <p class="text-gray-500 text-sm font-mono">
+                            <span class="blink">[</span>
+                            16 de Abril, 2025
+                            <span class="blink">]</span>
+                        </p>
+                    </header>
 
-        <p>
-            Esse código faz com que as palavras que aparecem nas tags ganhem um
-            peso 1.5x maior que as do problema principal, e a similaridade agora
-            reflete melhor os tópicos principais.
-        </p>
+                    <p>
+                        Algumas semanas atrás, eu estava testando o chatbot da nossa plataforma e reparei em um detalhe curioso: mesmo quando a pergunta era parecida com um problema já cadastrado, o resultado retornado era… diferente do esperado.
+                        Inicialmente, os resultados de buscas retornavam soluções
+                        priorizando os problemas e as tags. Mas ainda assim, era uma busca
+                        que poderia conter falhas. Afinal, os logs indicavam que a
+                        correspondência de palavras-chave foi reconhecida corretamente, e a
+                        pontuação estava sendo calculada com os pesos ajustados. Os valores
+                        pareciam coerentes, não havendo necessidade de ajustes. Posteriormente, notei que algumas buscas não retornavam resultados desejados, exigindo maior refinamento.
+                    </p>
 
-        <p>
-            Também criei uma <strong>lista de stopwords</strong> para ignorar palavras
-            irrelevantes, e apliquei um limite mínimo de similaridade. Assim, garantimos
-            que só resultados realmente relevantes sejam exibidos.
-        </p>
+                    <div class="border-l-2 border-gray-300 pl-4 py-1 text-gray-600 italic">
+                        "E como você pensou nisso?"
+                    </div>
 
-        <h3 class="text-lg font-semibold">E quanto à performance?</h3>
-        <p>
-            Mesmo com a busca refinada, percebi que ainda dava para melhorar o
-            tempo de resposta. A solução: <strong>cache com Redis</strong>.
-        </p>
+                    <p>
+                        O chatbot utiliza a função <span class="font-mono bg-gray-100 px-1 rounded">CalculateSimilarity</span>, que normaliza os textos (remove acentos, stopwords etc.),
+                        tokeniza a query e os problemas do banco de dados, e compara os
+                        tokens, calculando a similaridade baseada na proporção de palavras
+                        coincidentes.
+                    </p>
 
-        <p>Sem cache, o fluxo era assim:</p>
-        <ol class="list-decimal pl-5 space-y-1">
-            <li>Usuário envia pergunta ao chatbot.</li>
-            <li>A API consulta o banco de dados.</li>
-            <li>SQL Server processa e retorna os dados.</li>
-            <li>API responde ao usuário.</li>
-        </ol>
+                    <p>
+                        <span class="font-bold">Mas existe um problema:</span> o método não considera a importância
+                        das palavras na base. Algumas palavras podem ter mais peso que outras,
+                        e nossa aplicação estava tratando todas igualmente.
+                    </p>
 
-        <p>
-            Esse processo, com muitos acessos simultâneos, poderia sobrecarregar
-            o banco. A solução foi usar o Redis para armazenar as respostas
-            frequentes e evitar consultas desnecessárias.
-        </p>
+                    <h3 class="text-lg font-semibold mt-8 flex items-center">
+                        <span class="text-gray-500 mr-2">&gt;</span>
+                        O que melhorar?
+                    </h3>
+                    
+                    <p>Cheguei a três melhorias principais no cálculo:</p>
 
-        <p>
-            Agora, a API verifica primeiro no Redis. Se a resposta estiver no
-            cache, ela é retornada imediatamente. Caso contrário, busca no
-            banco, salva no Redis e responde.
-        </p>
+                    <ol class="space-y-2 ml-6">
+                        <li class="flex items-start">
+                            <span class="text-gray-500 mr-2">1.</span>
+                            <div>
+                                <span class="font-bold">Maior peso para tags e categorias:</span> se uma palavra
+                                da query estiver presente nesses campos, ela valerá mais pontos.
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-gray-500 mr-2">2.</span>
+                            <div>
+                                <span class="font-bold">Filtro por frequência:</span> palavras muito comuns (como
+                                "o", "de", "com") não devem ter tanto peso.
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-gray-500 mr-2">3.</span>
+                            <div>
+                                <span class="font-bold">Similaridade mínima:</span> resultados com uma pontuação
+                                muito baixa (ex: 10%) devem ser descartados.
+                            </div>
+                        </li>
+                    </ol>
 
-        <p class="font-medium">
-            O resultado? Menos chamadas ao banco, respostas em milissegundos e
-            maior escalabilidade sem comprometer o desempenho.
-        </p>
-    </article>
+                    <div class="border-l-2 border-gray-300 pl-4 py-1 text-gray-600 italic">
+                        "Ok, mas como você aplicou isso no código?"
+                    </div>
+
+                    <p>
+                        Atualizei a função <span class="font-mono bg-gray-100 px-1 rounded">CalculateSimilarity</span> com a seguinte lógica:
+                    </p>
+
+                    <div class="y2k-window my-6">
+                        <pre class="bg-gray-200 px-3 py-1 border-b border-gray-400 flex items-center text-xs font-bold tracking-wider p-4 overflow-x-auto font-mono">
+                            <code>
+                                foreach (var token in inputTokens)
+                                &#123;
+                                    if (problemTokens.Contains(token)) matches++;
+                                    if (tagTokens.Contains(token)) tagMatches++;
+                                &#125;
+                                
+                                double score = ((matches * 1.0) + (tagMatches * 1.5)) / inputTokens.Count;
+                            </code>
+                        </pre>
+                    </div>
+
+                    <p>
+                        Esse código faz com que as palavras que aparecem nas tags ganhem um
+                        peso 1.5x maior que as do problema principal, e a similaridade agora
+                        reflete melhor os tópicos principais.
+                    </p>
+
+                    <p>
+                        Também criei uma <span class="font-bold">lista de stopwords</span> para ignorar palavras
+                        irrelevantes, e apliquei um limite mínimo de similaridade. Assim, garantimos
+                        que só resultados realmente relevantes sejam exibidos.
+                    </p>
+
+                    <h3 class="text-lg font-semibold mt-8 flex items-center">
+                        <span class="text-gray-500 mr-2">&gt;</span>
+                        E quanto à performance?
+                    </h3>
+                    
+                    <p>
+                        Mesmo com a busca refinada, percebi que ainda dava para melhorar o
+                        tempo de resposta. A solução: <span class="font-bold">cache com Redis</span>.
+                    </p>
+
+                    <div class="bg-white border border-gray-300 my-6">
+                        <div class="bg-gray-200 px-3 py-1 border-b border-gray-300 flex items-center">
+                            <div class="text-xs font-bold tracking-wider">process.txt</div>
+                        </div>
+                        <div class="bg-white p-4">
+                            <p class="mb-2">Sem cache, o fluxo era assim:</p>
+                            <ol class="space-y-1 ml-6">
+                                <li class="flex items-start">
+                                    <span class="text-gray-500 mr-2">1.</span>
+                                    <div>Usuário envia pergunta ao chatbot.</div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-gray-500 mr-2">2.</span>
+                                    <div>A API consulta o banco de dados.</div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-gray-500 mr-2">3.</span>
+                                    <div>SQL Server processa e retorna os dados.</div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-gray-500 mr-2">4.</span>
+                                    <div>API responde ao usuário.</div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <p>
+                        Esse processo, com muitos acessos simultâneos, poderia sobrecarregar
+                        o banco. A solução foi usar o Redis para armazenar as respostas
+                        frequentes e evitar consultas desnecessárias.
+                    </p>
+
+                    <p>
+                        Agora, a API verifica primeiro no Redis. Se a resposta estiver no
+                        cache, ela é retornada imediatamente. Caso contrário, busca no
+                        banco, salva no Redis e responde.
+                    </p>
+
+                    <div class="mt-8 pt-4 border-t border-gray-200 font-medium">
+                        <p>
+                            O resultado? Menos chamadas ao banco, respostas em milissegundos e
+                            maior escalabilidade sem comprometer o desempenho.
+                        </p>
+                    </div>
+                    
+                    <div class="pt-6 mt-8 border-t border-gray-200">
+                        <div class="flex justify-between text-sm text-gray-500">
+                            <span class="font-mono">END_OF_FILE</span>
+                            <span class="font-mono"># # #</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
 </Layout>
