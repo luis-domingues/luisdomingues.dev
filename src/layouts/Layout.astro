@@ -9,8 +9,51 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Luís Domingues</title>
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+		/>
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
+		/>
 	</head>
 	<body>
-		<slot />
+		<div class="flex-grow flex items-center justify-center">
+			<slot />
+			<nav
+				class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-900 backdrop-blur-lg border border-gray-700/60 rounded-2xl px-3 flex items-center transition-all"
+			>
+				<ul class="flex justify-center space-x-8 py-2">
+					<li>
+						<a
+							href="index.astro"
+							class="hover:scale-110 transition-transform">
+								<i class="ph ph-house text-gray-300 text-2xl hover:text-white" />
+						</a>
+
+						<a
+							href="#"
+							class="hover:scale-110 transition-transform">
+								<i class="ph ph-code text-gray-300 text-2xl hover:text-white" />
+						</a>
+
+						<a
+							href="#"
+							class="hover:scale-110 transition-transform">
+								<i class="ph ph-article text-gray-300 text-2xl hover:text-white" />
+						</a>
+
+						<a
+							href="#"
+							class="hover:scale-110 transition-transform">
+								<i class="ph ph-linkedin-logo text-gray-300 text-2xl hover:text-white" />
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
 	</body>
 </html>
