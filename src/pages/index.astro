@@ -3,5 +3,25 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-	
+	<main class="min-h-screen flex flex-col items-center justify-center p-4 gap-6">
+        <div class="bg-gray-50 backdrop-blur-lg border border-gray-700/50 rounded-xl p-8 sm:p-10 md:p-12 max-w-2xl w-full space-y-8">
+            <div class="text-center space-y-2">
+                <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gra-900">Luís Paulo Domingues</h1>
+                <h2 class="text-xl text-gray-900">Software Engineer</h2>
+            </div>
+            <p class="text-gray-900 leading-relaxed">
+                Engenheiro de software focado em desenvolvimento fullstack de soluções escaláveis e inteligentes. Entusiasta de machine learning, IA, computação em nuvem e dados.
+            </p>
+            <div class="space-y-3">
+                <h3 class="text-lg font-semibold text-gray-900">Stacks</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 border border-purple-600 bg-purple-400/50 text-gray-900 rounded-lg text-sm">.NET</span>
+                    <span class="px-3 py-1 border border-yellow-400 bg-yellow-400/50 text-gray-900 rounded-lg text-sm">JavaScript</span>
+                    <span class="px-3 py-1 border border-blue-400 bg-blue-400/50 text-gray-900 rounded-lg text-sm">Microsoft Azure</span>
+                    <span class="px-3 py-1 border border-gray-400 bg-gray-400/50 text-gray-900 rounded-lg text-sm">Automação</span>
+                    <span class="px-3 py-1 border border-green-400 bg-green-400/50 text-gray-900 rounded-lg text-sm">SQL e NoSQL</span>
+                </div>
+            </div>
+        </div>
+    </main>
 </Layout>
