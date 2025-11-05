@@ -20,36 +20,37 @@
 			href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
 		/>
 	</head>
-	<body>
-		<div class="flex-grow flex items-center justify-center">
+	<body class="font-jetbrains">
+		<div class="flex-grow flex items-center justify-center bg-gray-50">
 			<slot />
 			<nav
-				class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-900 backdrop-blur-lg border border-gray-700/60 rounded-2xl px-3 flex items-center transition-all"
+				class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-50 backdrop-blur-lg border border-gray-700/50 rounded-xl px-4 sm:px-6 flex items-center transition-all"
 			>
-				<ul class="flex justify-center space-x-8 py-2">
-					<li>
-						<a
-							href="index.astro"
-							class="hover:scale-110 transition-transform">
-								<i class="ph ph-house text-gray-300 text-2xl hover:text-white" />
+				<ul class="flex justify-center items-center gap-4 sm:gap-6 md:gap-8 py-3">
+					<li class="flex items-center gap-3 sm:gap-6 md:gap-7">
+						
+						<a href="index.astro"
+							class="hover:scale-110">
+								<i class="ph ph-house text-gray-900 text-2xl" />
 						</a>
-
-						<a
-							href="#"
-							class="hover:scale-110 transition-transform">
-								<i class="ph ph-code text-gray-300 text-2xl hover:text-white" />
+						
+						<hr class="w-px h-6 bg-gray-700/50 border-0" />
+						
+						<a href="#"
+							class="hover:scale-110">
+								<i class="ph ph-code text-gray-900 text-2xl" />
 						</a>
-
-						<a
-							href="#"
-							class="hover:scale-110 transition-transform">
-								<i class="ph ph-article text-gray-300 text-2xl hover:text-white" />
+						
+						<a href="#"
+							class="hover:scale-110">
+								<i class="ph ph-article-ny-times text-gray-900 text-2xl" />
 						</a>
-
-						<a
-							href="#"
-							class="hover:scale-110 transition-transform">
-								<i class="ph ph-linkedin-logo text-gray-300 text-2xl hover:text-white" />
+						
+						<hr class="w-px h-6 bg-gray-700/50 border-0" />		
+						
+						<a href="#"
+							class="hover:scale-110">
+								<i class="ph ph-chats text-gray-900 text-2xl" />
 						</a>
 					</li>
 				</ul>
